@@ -1,0 +1,290 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+}
+
+.scene{
+    display:none;
+    width:100vw;
+    height:100vh;
+}
+
+.active{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+#intro{
+    background:#111;
+    color:white;
+    gap:20px;
+}
+
+#intro h1{
+    font-size:3rem;
+}
+
+#intro h2{
+    font-size:2rem;
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
+
+#party{
+    position:relative;
+
+    background-image:url("./assets/background.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+#party::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.25);
+}
+
+#banner{
+    position:absolute;
+    top:40px;
+    width:100%;
+    text-align:center;
+
+    font-size:clamp(22px,4vw,48px);
+    font-weight:bold;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px pink,
+    0 0 20px hotpink,
+    0 0 30px deeppink;
+
+    z-index:2;
+}
+
+#message{
+    position:absolute;
+    top:120px;
+    width:100%;
+
+    text-align:center;
+
+    font-size:clamp(18px,3vw,30px);
+    font-weight:bold;
+
+    color:white;
+
+    text-shadow:2px 2px 10px black;
+
+    z-index:2;
+}
+
+#friends{
+    position:absolute;
+
+    top:220px;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;
+
+    z-index:3;
+}
+
+.friend{
+
+    font-size:clamp(50px,7vw,95px);
+
+    opacity:0;
+
+    transform:translateY(-60px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.friend.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.friend img{
+    width:clamp(70px,12vw,120px);
+    height:auto;
+    object-fit:contain;
+}
+
+#cake{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:470px;
+
+    display:none;
+
+    z-index:3;
+}
+
+#cakeEmoji{
+    width:min(45vw,240px);
+    height:auto;
+}
+
+#knife{
+    position:absolute;
+    top:-80px;
+    left:90px;
+
+    font-size:70px;
+
+    display:none;
+
+    cursor:grab;
+
+    user-select:none;
+
+    z-index:10;
+}
+
+.slice{
+    position:absolute;
+    font-size:40px;
+
+    opacity:1;
+
+    transition:
+    transform 2s ease,
+    opacity 1s ease;
+
+    z-index:20;
+}
+.clap{
+    animation:clap .5s infinite;
+}
+
+@keyframes clap{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+#controls{
+    position:absolute;
+    bottom:40px;
+    width:100%;
+    text-align:center;
+    z-index:5;
+}
+
+.letter{
+    width:70%;
+    margin:auto;
+
+    background:white;
+
+    color:black;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    font-size:22px;
+    line-height:1.8;
+}
+
+.cake-piece{
+    transform-origin:center;
+    animation:piecePop .3s ease;
+}
+
+.cat-container{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.cat-image{
+    width:min(300px,80vw);
+    height:auto;
+    object-fit:contain;
+}
+
+.cat-message{
+    text-align:center;
+    font-size:clamp(20px,3vw,28px);
+    font-weight:bold;
+    line-height:1.6;
+}
+
+@keyframes piecePop{
+    from{
+        transform:scale(0);
+    }
+    to{
+        transform:scale(1);
+    }
+}
+
+@media(max-width:768px){
+
+    #friends{
+        gap:10px;
+        padding:0 10px;
+    }
+
+    #cake{
+        top:60%;
+    }
+
+    #banner{
+        top:20px;
+    }
+
+    #message{
+        top:90px;
+    }
+
+    button{
+        font-size:16px;
+        padding:12px 20px;
+    }
+
+    .letter{
+        width:92%;
+        font-size:18px;
+        max-height:70vh;
+        overflow-y:auto;
+    }
+}
