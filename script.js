@@ -144,35 +144,31 @@ function cutCake(){
         knifeDragged = true;
     };
 
-    document.onmousemove = (e)=>{
+    document.onmousemove = (e) => {
+    if (!knifeDragged) return;
 
-        if(!knifeDragged) return;
+    const cakeRect = cake.getBoundingClientRect();
 
-        knife.style.left =
-        (e.pageX - cake.offsetLeft - 30)+"px";
+    knife.style.left =
+        (e.clientX - cakeRect.left - 30) + "px";
 
-        knife.style.top =
-        (e.pageY - cake.offsetTop - 30)+"px";
+    knife.style.top =
+        (e.clientY - cakeRect.top - 30) + "px";
 
-        const cakeRect =
-        document
-        .getElementById("cakeEmoji")
-        .getBoundingClientRect();
+    const cakeEmoji = document.getElementById("cakeEmoji");
+    const cakeEmojiRect = cakeEmoji.getBoundingClientRect();
 
-        if(
-            e.clientX > cakeRect.left &&
-            e.clientX < cakeRect.right &&
-            e.clientY > cakeRect.top &&
-            e.clientY < cakeRect.bottom
-        ){
-
-            knifeDragged=false;
-
-            document.onmousemove=null;
-
-            splitCake();
-        }
-    };
+    if (
+        e.clientX > cakeEmojiRect.left &&
+        e.clientX < cakeEmojiRect.right &&
+        e.clientY > cakeEmojiRect.top &&
+        e.clientY < cakeEmojiRect.bottom
+    ) {
+        knifeDragged = false;
+        document.onmousemove = null;
+        splitCake();
+    }
+};
 
     document.onmouseup=()=>{
         knifeDragged=false;
