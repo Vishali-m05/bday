@@ -306,43 +306,29 @@ const targetY =
     },5000);
 }
 
-
 function openLetter(){
 
     message.innerHTML = "";
 
-    controls.innerHTML = `
+    const overlay = document.createElement("div");
+    overlay.className = "letter-overlay";
+
+    overlay.innerHTML = `
         <div class="letter">
-
             <div class="cat-container">
-                <img
-                    src="./assets/cat.png"
-                    alt="Cat"
-                    class="cat-image"
-                >
+                <img src="./assets/cat.png" class="cat-image">
             </div>
-            <p class="cat-message">
-                Thanks for the cake,
-            </p>
-            <p class="cat-message">
-                It was all for fun's sake.
-            </p>
-            <p class="cat-message">
-                No gifts to send your way,
-            </p>
-            <p class="cat-message">
-                But smile and enjoy your day.
-            </p>
-            <p class="cat-message">
-                Before you go and walk away,
-            </p>
 
-            <p class="cat-message">
-                Happy Birthday anyway!
-            </p>
-
+            <p class="cat-message">Thanks for the cake,</p>
+            <p class="cat-message">It was all for fun's sake.</p>
+            <p class="cat-message">No gifts to send your way,</p>
+            <p class="cat-message">But smile and enjoy your day.</p>
+            <p class="cat-message">Before you go and walk away,</p>
+            <p class="cat-message">Happy Birthday anyway!</p>
         </div>
     `;
+
+    document.body.appendChild(overlay);
 }
 window.onload = () => {
     const updateControls = () => {

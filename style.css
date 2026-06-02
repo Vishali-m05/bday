@@ -212,24 +212,41 @@ button{
     left:50%;
     transform:translateX(-50%);
     width:100%;
-    text-align:center;
-    z-index:5;
+    top:50%;
+    z-index:50;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .letter{
-    width:70%;
-    margin:auto;
+    width:min(90%,500px);
+    max-height:80vh;
+    overflow-y:auto;
 
     background:white;
-
     color:black;
 
-    padding:30px;
-
+    padding:20px;
     border-radius:20px;
 
-    font-size:22px;
-    line-height:1.8;
+    font-size:18px;
+    line-height:1.6;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.letter-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
 }
 
 .cake-piece{
@@ -308,7 +325,7 @@ button{
     }
 
     .letter{
-        width:95%;
+        width:92%;
         max-height:75vh;
         overflow-y:auto;
         padding:20px;
@@ -319,6 +336,6 @@ button{
     }
 
     .cat-message{
-        font-size:18px;
+        font-size:16px;
     }
 }
