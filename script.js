@@ -42,7 +42,7 @@ function showCake(){
 
     message.innerHTML=
     "We brought something special for you ❤️";
-
+    controls.style.top=(cake.offsetTop+ cake.offsetHeight + 30) + "px";
     controls.innerHTML=`
         <button onclick="lightCandles()">
             Light Candles 🕯️
@@ -279,8 +279,7 @@ const targetY =
         `translate(${targetX}px, ${targetY}px)`;
 });
 
-    message.innerHTML =
-    "Everyone got a piece of cake ❤️";
+    
 
     // Keep slices visible on girls for 2 seconds
     setTimeout(()=>{
@@ -322,19 +321,36 @@ function openLetter(){
                     class="cat-image"
                 >
             </div>
-
             <p class="cat-message">
                 Thanks for the cake,
-It was all for fun's sake.
+            </p>
+            <p class="cat-message">
+                It was all for fun's sake.
+            </p>
+            <p class="cat-message">
+                No gifts to send your way,
+            </p>
+            <p class="cat-message">
+                But smile and enjoy your day.
+            </p>
+            <p class="cat-message">
+                Before you go and walk away,
+            </p>
 
-No gifts to send your way,
-But smile and enjoy your day.
-
-Before you go and walk away,
-Happy Birthday anyway!
-
+            <p class="cat-message">
+                Happy Birthday anyway!
             </p>
 
         </div>
     `;
 }
+window.onload = () => {
+    const updateControls = () => {
+        if (cake.style.display === "block") {
+            controls.style.top =
+                (cake.offsetTop + cake.offsetHeight + 30) + "px";
+        }
+    };
+
+    window.addEventListener("resize", updateControls);
+};

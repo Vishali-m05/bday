@@ -209,7 +209,8 @@ button{
 
 #controls{
     position:absolute;
-    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
     width:100%;
     text-align:center;
     z-index:5;
