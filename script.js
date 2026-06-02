@@ -69,29 +69,30 @@ function lightCandles(){
 
 function startSong(){
 
-    message.innerHTML =
-    "Vibe with the masterpiece 🎶";
-
+    message.innerHTML = "Vibe with the masterpiece 🎶";
     controls.innerHTML = "";
 
-    const song =
-    document.getElementById("birthdaySong");
+    const song = document.getElementById("birthdaySong");
 
     song.currentTime = 0;
+    song.load(); // 🔥 important for instant start
 
-    document
-        .querySelectorAll(".friend")
-        .forEach(friend=>{
+    const playPromise = song.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            console.log("Audio blocked, retrying...");
+        });
+    }
+
+    document.querySelectorAll(".friend")
+        .forEach(friend => {
             friend.classList.add("clap");
         });
 
-    song.play();
-
-    song.onended = ()=>{
-
-        document
-            .querySelectorAll(".friend")
-            .forEach(friend=>{
+    song.onended = () => {
+        document.querySelectorAll(".friend")
+            .forEach(friend => {
                 friend.classList.remove("clap");
             });
 
@@ -102,6 +103,7 @@ function startSong(){
         `;
     };
 }
+
 
 function makeWish(){
 

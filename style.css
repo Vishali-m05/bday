@@ -29,12 +29,12 @@ body{
 }
 
 #intro h1{
-    font-size:3rem;
+    font-size:clamp(24px,6vw,48px);
+    text-align:center;
+    padding:0 10px;
 }
 
-#intro h2{
-    font-size:2rem;
-}
+
 
 button{
     padding:15px 30px;
@@ -137,7 +137,7 @@ button{
 }
 
 .friend img{
-    width:clamp(70px,12vw,120px);
+    width:min(90px,18vw);
     height:auto;
     object-fit:contain;
 }
@@ -154,8 +154,10 @@ button{
 }
 
 #cakeEmoji{
-    width:min(45vw,240px);
+    width:min(65vw,280px);
+    max-width:280px;
     height:auto;
+    object-fit:contain;
 }
 
 #knife{
@@ -176,7 +178,7 @@ button{
 
 .slice{
     position:absolute;
-    font-size:40px;
+    font-size:clamp(28px, 6vw, 40px);
 
     opacity:1;
 
