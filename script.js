@@ -130,49 +130,67 @@ function makeWish(){
 function cutCake(){
 
     controls.innerHTML="";
+    message.innerHTML="Drag the knife across the cake 🔪";
 
-    message.innerHTML=
-    "Drag the knife across the cake 🔪";
-
-    const knife =
-    document.getElementById("knife");
-
+    const knife = document.getElementById("knife");
     knife.style.display="block";
 
-    knife.onmousedown = () => {
+    let dragging = false;
 
-        knifeDragged = true;
+    // 🖱️ Desktop
+    knife.onmousedown = () => {
+        dragging = true;
+    };
+
+    document.onmouseup = () => {
+        dragging = false;
     };
 
     document.onmousemove = (e) => {
-    if (!knifeDragged) return;
-
-    const cakeRect = cake.getBoundingClientRect();
-
-    knife.style.left =
-        (e.clientX - cakeRect.left - 30) + "px";
-
-    knife.style.top =
-        (e.clientY - cakeRect.top - 30) + "px";
-
-    const cakeEmoji = document.getElementById("cakeEmoji");
-    const cakeEmojiRect = cakeEmoji.getBoundingClientRect();
-
-    if (
-        e.clientX > cakeEmojiRect.left &&
-        e.clientX < cakeEmojiRect.right &&
-        e.clientY > cakeEmojiRect.top &&
-        e.clientY < cakeEmojiRect.bottom
-    ) {
-        knifeDragged = false;
-        document.onmousemove = null;
-        splitCake();
-    }
-};
-
-    document.onmouseup=()=>{
-        knifeDragged=false;
+        if(!dragging) return;
+        moveKnife(e.clientX, e.clientY);
     };
+
+    // 📱 Mobile support
+    knife.ontouchstart = () => {
+        dragging = true;
+    };
+
+    document.ontouchend = () => {
+        dragging = false;
+    };
+
+    document.ontouchmove = (e) => {
+        if(!dragging) return;
+
+        const touch = e.touches[0];
+        moveKnife(touch.clientX, touch.clientY);
+    };
+
+    function moveKnife(x, y){
+        const cakeRect = cake.getBoundingClientRect();
+
+        knife.style.left =
+            (x - cakeRect.left - 30) + "px";
+
+        knife.style.top =
+            (y - cakeRect.top - 30) + "px";
+
+        const cakeEmojiRect =
+            document.getElementById("cakeEmoji").getBoundingClientRect();
+
+        if (
+            x > cakeEmojiRect.left &&
+            x < cakeEmojiRect.right &&
+            y > cakeEmojiRect.top &&
+            y < cakeEmojiRect.bottom
+        ) {
+            dragging = false;
+            document.onmousemove = null;
+            document.ontouchmove = null;
+            splitCake();
+        }
+    }
 }
 
 function splitCake(){
